@@ -23,6 +23,7 @@
       font-family: 'Rubik', sans-serif;
       background: var(--dark);
       color: #fff;
+      overflow-x: hidden;
     }
 
     nav {
@@ -36,6 +37,7 @@
       align-items: center;
       padding: 1rem 2rem;
       z-index: 100;
+      animation: fadeInDown 0.8s ease forwards;
     }
 
     nav h1 {
@@ -59,7 +61,25 @@
     header {
       padding: 8rem 2rem 4rem;
       text-align: center;
-      background: radial-gradient(circle at top left, rgba(255, 61, 79, 0.15), transparent);
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      position: relative;
+      color: white;
+      overflow: hidden;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    /* overlay sombre sur l'image */
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 13, 13, 0.75);
+      z-index: 0;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
     }
 
     header h2 {
@@ -67,13 +87,15 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       color: var(--red);
+      text-shadow: 0 0 10px #ff3d4faa;
     }
 
     header p {
       font-size: 1.2rem;
-      color: #ccc;
+      color: #ddd;
       max-width: 700px;
       margin: auto;
+      text-shadow: 0 0 6px #0008;
     }
 
     .btn {
@@ -86,17 +108,20 @@
       font-weight: bold;
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
-      box-shadow: 0 0 15px rgba(255, 61, 79, 0.4);
+      box-shadow: 0 0 15px rgba(255, 61, 79, 0.6);
+      font-size: 1.1rem;
     }
 
     .btn:hover {
       background: #c51162;
       transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(197, 17, 98, 0.8);
     }
 
     section {
       padding: 4rem 2rem;
       text-align: center;
+      animation: fadeInUp 1s ease forwards;
     }
 
     .features {
@@ -104,6 +129,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
+      margin-top: 2rem;
     }
 
     .card {
@@ -119,7 +145,7 @@
 
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 61, 79, 0.3);
+      box-shadow: 0 0 25px rgba(255, 61, 79, 0.4);
     }
 
     .card h3 {
@@ -135,6 +161,7 @@
     #payment-section {
       display: none;
       background: rgba(255,255,255,0.02);
+      margin-top: 3rem;
     }
 
     form {
@@ -162,6 +189,7 @@
       border: none;
       background: rgba(255,255,255,0.08);
       color: white;
+      font-size: 1rem;
     }
 
     input::placeholder {
@@ -177,10 +205,11 @@
       gap: 1rem;
       font-family: monospace;
       color: var(--red);
+      user-select: text;
     }
 
     .wallet {
-      word-break: break-all;
+      word-break: break-word;
       flex: 1;
     }
 
@@ -192,6 +221,12 @@
       color: white;
       cursor: pointer;
       font-weight: bold;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .copy-btn:hover {
+      background: #c51162;
     }
 
     .copy-msg {
@@ -200,10 +235,96 @@
       margin-left: 1rem;
       opacity: 0;
       transition: opacity 0.4s ease;
+      user-select: none;
     }
 
     .copy-msg.show {
       opacity: 1;
+    }
+
+    /* FAQ styles */
+    #faq {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    #faq h2 {
+      margin-bottom: 2rem;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--red);
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      background: var(--glass);
+      padding: 1rem 1.5rem;
+      border-radius: 0.8rem;
+      box-shadow: 0 0 15px rgba(255, 61, 79, 0.15);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .faq-item:hover {
+      background: rgba(255, 61, 79, 0.1);
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: var(--red);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      margin-top: 0.5rem;
+      color: #ddd;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px; /* suffisamment grand pour la réponse */
+    }
+
+    /* Support Section */
+    #support {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      text-align: left;
+      background: var(--glass);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 25px rgba(255, 61, 79, 0.15);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    #support h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--red);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    #support p {
+      color: #ddd;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+      font-size: 1rem;
+    }
+
+    #support a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    #support a:hover {
+      text-decoration: underline;
     }
 
     footer {
@@ -212,6 +333,7 @@
       text-align: center;
       font-size: 0.9rem;
       color: #777;
+      margin-top: 5rem;
     }
 
     footer a {
@@ -241,15 +363,84 @@
         margin-top: 0.5rem;
       }
     }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Loader Overlay */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      flex-direction: column;
+      color: var(--red);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .spinner {
+      border: 5px solid rgba(255, 61, 79, 0.2);
+      border-top: 5px solid var(--red);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
   </style>
 </head>
 <body>
+
+  <div id="loader">
+    <div class="spinner"></div>
+    Chargement...
+  </div>
 
   <nav>
     <h1>Call of Killeur</h1>
     <div>
       <a href="#features">Fonctionnalités</a>
       <a href="#" onclick="showPayment()">Acheter</a>
+      <a href="#faq">FAQ</a>
+      <a href="#support">Support</a>
     </div>
   </nav>
 
@@ -295,17 +486,79 @@
     </form>
   </section>
 
+  <section id="faq">
+    <h2>FAQ - Questions fréquentes</h2>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Comment installer Call of Killeur ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Après réception de votre achat, vous recevrez un lien avec un guide d'installation détaillé, simple et rapide.
+      </div>
+    </div>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Est-ce que l'outil est sûr ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Oui, Call of Killeur intègre un système anti-ban avancé pour protéger votre compte.
+      </div>
+    </div>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Quel type de support est offert ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Un support client disponible 7j/7 par e-mail et Discord pour répondre à toutes vos questions.
+      </div>
+    </div>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Sur quelles plateformes Call of Killeur fonctionne-t-il ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Notre outil est compatible uniquement avec la version PC de Call of Duty.
+      </div>
+    </div>
+  </section>
+
+  <section id="support">
+    <h2>Support Client</h2>
+    <p>Vous avez besoin d’aide ou d’informations supplémentaires ?</p>
+    <p>Contactez-nous par e-mail à <a href="mailto:support@callofkilleur.com">support@callofkilleur.com</a> ou via notre serveur <a href="https://discord.gg/example" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+    <p>Nous répondons généralement sous 24 heures.</p>
+  </section>
+
   <footer>
     &copy; 2025 Call of Killeur. Tous droits réservés.
   </footer>
 
   <script>
+    // Loader Hide après chargement complet
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 600);
+    });
+
+    // Payment section toggle
     function showPayment() {
       const payment = document.getElementById("payment-section");
       payment.style.display = "block";
       payment.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Copier adresse wallet
     function copyWallet() {
       const wallet = document.getElementById("wallet-address").textContent;
       navigator.clipboard.writeText(wallet).then(() => {
@@ -314,8 +567,20 @@
         setTimeout(() => msg.classList.remove("show"), 1500);
       });
     }
+
+    // FAQ Toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.classList.toggle('active');
+        }
+      });
+    });
   </script>
 
 </body>
 </html>
-
