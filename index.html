@@ -1,431 +1,390 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Call of Killeur</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --red: #ff3d4f;
-      --dark: #0d0d0d;
-      --accent: #1e1e1e;
-      --glass: rgba(255, 255, 255, 0.04);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Call of Killeur - Puissance et Domination</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Oswald:wght@600&family=Roboto+Mono&display=swap" rel="stylesheet" />
+<style>
+  /* Palette */
+  :root {
+    --black: #0b0b0b;
+    --dark-grey: #1e1e1e;
+    --medium-grey: #333;
+    --red: #d72828;
+    --olive: #4a5b34;
+    --light-grey: #bbb;
+    --text-white: #e6e6e6;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--black);
+    color: var(--text-white);
+    overflow-x: hidden;
+  }
 
-    body {
-      font-family: 'Rubik', sans-serif;
-      background: var(--dark);
-      color: #fff;
-      overflow-x: hidden;
-    }
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: linear-gradient(90deg, #0b0b0bcc, #222222cc);
+    border-bottom: 2px solid var(--red);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    z-index: 200;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  nav h1 {
+    font-size: 1.8rem;
+    color: var(--red);
+    text-shadow: 0 0 8px #d72828bb;
+    cursor: default;
+  }
+  nav a {
+    color: var(--light-grey);
+    margin-left: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: var(--red);
+    text-shadow: 0 0 12px #d72828aa;
+  }
 
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(13,13,13,0.7);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 100;
-      animation: fadeInDown 0.8s ease forwards;
-    }
+  /* Header */
+  header {
+    position: relative;
+    height: 90vh;
+    background: url('https://wallpaperaccess.com/full/2726661.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13,13,13,0.85) 30%, rgba(13,13,13,0.95) 85%);
+    z-index: 0;
+  }
+  header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    color: var(--red);
+    z-index: 1;
+    text-shadow: 0 0 14px #d7282888;
+    letter-spacing: 6px;
+    margin-bottom: 1rem;
+  }
+  header p {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.3rem;
+    max-width: 600px;
+    color: var(--light-grey);
+    margin-bottom: 2.5rem;
+    z-index: 1;
+    text-shadow: 0 0 5px #000;
+  }
+  header button {
+    z-index: 1;
+    padding: 1rem 3rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    color: var(--black);
+    background: var(--red);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-weight: 700;
+    box-shadow: 0 0 20px #d72828cc;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  header button:hover {
+    background: #a71b1b;
+    transform: scale(1.05);
+    box-shadow: 0 0 40px #a71b1bcc;
+  }
 
-    nav h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--red);
-      font-size: 1.5rem;
-    }
+  /* Section styles */
+  section {
+    max-width: 1100px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+  }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 2rem;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+  section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    color: var(--red);
+    margin-bottom: 2rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 8px #d72828cc;
+    text-align: center;
+  }
 
-    nav a:hover {
-      color: var(--red);
-    }
+  /* Features */
+  .features {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .card {
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 320px;
+    box-shadow: 0 0 15px #d72828aa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #d72828dd;
+  }
+  .card h3 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--red);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #d72828aa;
+  }
+  .card p {
+    font-size: 1rem;
+    color: var(--light-grey);
+    line-height: 1.4;
+  }
 
-    header {
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      position: relative;
-      color: white;
-      overflow: hidden;
-      animation: fadeIn 1.2s ease forwards;
-    }
+  /* Payment Section */
+  #payment-section {
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 3rem auto 0;
+    display: none;
+    box-shadow: 0 0 25px #d72828cc;
+  }
+  #payment-section h2 {
+    margin-bottom: 1rem;
+  }
+  form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--red);
+    letter-spacing: 1px;
+  }
+  form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    background: #222;
+    color: var(--text-white);
+    outline: none;
+    box-shadow: inset 0 0 8px #d72828aa;
+    transition: box-shadow 0.3s ease;
+  }
+  form input[type="email"]:focus {
+    box-shadow: 0 0 14px #d72828ee;
+  }
+  form p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--light-grey);
+    font-family: 'Roboto Mono', monospace;
+  }
 
-    /* overlay sombre sur l'image */
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(13, 13, 13, 0.75);
-      z-index: 0;
-    }
+  /* Wallet container */
+  .wallet-container {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    box-shadow: inset 0 0 12px #d72828bb;
+    user-select: text;
+  }
+  .wallet {
+    word-break: break-word;
+    font-size: 1.1rem;
+  }
+  .copy-btn {
+    background: var(--red);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--black);
+    box-shadow: 0 0 15px #d72828cc;
+    transition: background 0.3s ease;
+  }
+  .copy-btn:hover {
+    background: #a71b1b;
+    box-shadow: 0 0 30px #a71b1bcc;
+  }
+  .copy-msg {
+    color: #6cfc6c;
+    font-weight: 700;
+    margin-left: 1rem;
+    opacity: 0;
+    user-select: none;
+    transition: opacity 0.4s ease;
+  }
+  .copy-msg.show {
+    opacity: 1;
+  }
 
-    header > * {
-      position: relative;
-      z-index: 1;
-    }
+  /* FAQ Section */
+  #faq {
+    max-width: 850px;
+    margin: 0 auto 5rem;
+  }
+  .faq-item {
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 1.3rem 1.8rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #d72828aa;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .faq-item:hover {
+    background: #2e2e2e;
+    box-shadow: 0 0 20px #d72828dd;
+  }
+  .faq-question {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--red);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 2px;
+  }
+  .faq-answer {
+    margin-top: 0.6rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--light-grey);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    line-height: 1.4;
+  }
+  .faq-item.active .faq-answer {
+    max-height: 300px;
+  }
 
-    header h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--red);
-      text-shadow: 0 0 10px #ff3d4faa;
-    }
+  /* Support Section */
+  #support {
+    max-width: 600px;
+    margin: 0 auto 5rem;
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 25px #d72828cc;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--light-grey);
+    text-align: center;
+  }
+  #support h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  #support a {
+    color: var(--red);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  #support a:hover {
+    color: #a71b1b;
+    text-decoration: underline;
+  }
 
-    header p {
-      font-size: 1.2rem;
-      color: #ddd;
-      max-width: 700px;
-      margin: auto;
-      text-shadow: 0 0 6px #0008;
-    }
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: #555;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    border-top: 1px solid #222;
+  }
 
-    .btn {
-      margin-top: 2rem;
-      background: var(--red);
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-      box-shadow: 0 0 15px rgba(255, 61, 79, 0.6);
-      font-size: 1.1rem;
-    }
+  /* Loader Overlay */
+  #loader {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    flex-direction: column;
+    color: var(--red);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    user-select: none;
+  }
+  .spinner {
+    border: 6px solid rgba(215, 40, 40, 0.2);
+    border-top: 6px solid var(--red);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1.2s linear infinite;
+    margin-bottom: 1rem;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 
-    .btn:hover {
-      background: #c51162;
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(197, 17, 98, 0.8);
-    }
-
-    section {
-      padding: 4rem 2rem;
-      text-align: center;
-      animation: fadeInUp 1s ease forwards;
-    }
-
+  /* Responsive */
+  @media (max-width: 850px) {
     .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,0.05);
-      backdrop-filter: blur(12px);
-      border-radius: 1rem;
-      padding: 2rem;
-      width: 300px;
-      box-shadow: 0 0 10px rgba(255, 61, 79, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 61, 79, 0.4);
-    }
-
-    .card h3 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--red);
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: #ccc;
-    }
-
-    #payment-section {
-      display: none;
-      background: rgba(255,255,255,0.02);
-      margin-top: 3rem;
-    }
-
-    form {
-      background: var(--glass);
-      padding: 2rem;
-      border-radius: 1rem;
-      max-width: 500px;
-      margin: auto;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(255, 61, 79, 0.1);
-      text-align: left;
-    }
-
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    input {
-      padding: 1rem;
-      width: 100%;
-      margin-bottom: 1.5rem;
-      border-radius: 0.5rem;
-      border: none;
-      background: rgba(255,255,255,0.08);
-      color: white;
-      font-size: 1rem;
-    }
-
-    input::placeholder {
-      color: #aaa;
-    }
-
-    .wallet-container {
-      background: #111;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-family: monospace;
-      color: var(--red);
-      user-select: text;
-    }
-
-    .wallet {
-      word-break: break-word;
-      flex: 1;
-    }
-
-    .copy-btn {
-      background: var(--red);
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
-
-    .copy-btn:hover {
-      background: #c51162;
-    }
-
-    .copy-msg {
-      color: limegreen;
-      font-weight: 600;
-      margin-left: 1rem;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      user-select: none;
-    }
-
-    .copy-msg.show {
-      opacity: 1;
-    }
-
-    /* FAQ styles */
-    #faq {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    #faq h2 {
-      margin-bottom: 2rem;
-      font-family: 'Orbitron', sans-serif;
-      color: var(--red);
-    }
-
-    .faq-item {
-      margin-bottom: 1.5rem;
-      background: var(--glass);
-      padding: 1rem 1.5rem;
-      border-radius: 0.8rem;
-      box-shadow: 0 0 15px rgba(255, 61, 79, 0.15);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .faq-item:hover {
-      background: rgba(255, 61, 79, 0.1);
-    }
-
-    .faq-question {
-      font-weight: 600;
-      color: var(--red);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-answer {
-      margin-top: 0.5rem;
-      color: #ddd;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 300px; /* suffisamment grand pour la réponse */
-    }
-
-    /* Support Section */
-    #support {
-      max-width: 600px;
-      margin: 3rem auto 0;
-      text-align: left;
-      background: var(--glass);
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 25px rgba(255, 61, 79, 0.15);
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    #support h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--red);
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    #support p {
-      color: #ddd;
-      margin-bottom: 1rem;
-      line-height: 1.5;
-      font-size: 1rem;
-    }
-
-    #support a {
-      color: var(--red);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    #support a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      background: #111;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 5rem;
-    }
-
-    footer a {
-      color: var(--red);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .features {
-        flex-direction: column;
-        align-items: center;
-      }
-      .wallet-container {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .copy-btn {
-        width: 100%;
-        margin-top: 0.5rem;
-      }
-      .copy-msg {
-        margin-left: 0;
-        margin-top: 0.5rem;
-      }
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Loader Overlay */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: var(--dark);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 200;
       flex-direction: column;
-      color: var(--red);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
+      align-items: center;
     }
-
-    .spinner {
-      border: 5px solid rgba(255, 61, 79, 0.2);
-      border-top: 5px solid var(--red);
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
+    #payment-section {
+      margin: 3rem 1rem 0;
+      width: auto;
     }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
 
@@ -435,59 +394,59 @@
   </div>
 
   <nav>
-    <h1>Call of Killeur</h1>
+    <h1>CALL OF KILLEUR</h1>
     <div>
-      <a href="#features">Fonctionnalités</a>
-      <a href="#" onclick="showPayment()">Acheter</a>
+      <a href="#features">FONCTIONNALITÉS</a>
+      <a href="#" onclick="showPayment()">ACHETER</a>
       <a href="#faq">FAQ</a>
-      <a href="#support">Support</a>
+      <a href="#support">SUPPORT</a>
     </div>
   </nav>
 
   <header>
-    <h2>Call of Killeur</h2>
+    <h2>CALL OF KILLEUR</h2>
     <p>Dominez le champ de bataille avec nos outils de performance extrême.</p>
-    <button class="btn" onclick="showPayment()">Acheter maintenant</button>
+    <button onclick="showPayment()">ACHETER MAINTENANT</button>
   </header>
 
   <section id="features">
-    <h2>Fonctionnalités</h2>
+    <h2>FONCTIONNALITÉS</h2>
     <div class="features">
       <div class="card">
-        <h3>Aimbot</h3>
-        <p>Visez automatiquement vos cibles avec une précision redoutable.</p>
+        <h3>AIMBOT</h3>
+        <p>Visez automatiquement vos cibles avec une précision chirurgicale, même en pleine action.</p>
       </div>
       <div class="card">
-        <h3>Wallhack</h3>
-        <p>Visualisez vos ennemis à travers les murs pour une anticipation totale.</p>
+        <h3>WALLHACK</h3>
+        <p>Repérez vos ennemis à travers les murs et obstacles pour anticiper chaque mouvement.</p>
       </div>
       <div class="card">
-        <h3>Anti-Ban</h3>
-        <p>Technologie furtive pour éviter les bannissements, même après signalement.</p>
+        <h3>ANTI-BAN</h3>
+        <p>Notre technologie furtive garantit une protection avancée contre tout système de détection.</p>
       </div>
     </div>
   </section>
 
   <section id="payment-section">
-    <h2>Acheter Call of Killeur</h2>
+    <h2>ACHETER CALL OF KILLEUR</h2>
     <form>
       <label for="email">Adresse e-mail :</label>
-      <input type="email" id="email" placeholder="votre.email@example.com" required>
+      <input type="email" id="email" placeholder="votre.email@example.com" required />
 
       <p>Envoyez <strong>79 USD en SOL</strong> à l'adresse suivante :</p>
 
       <div class="wallet-container">
         <div class="wallet" id="wallet-address">SyttRuok9zQr4Kp93f58D8zHuerckFYrUy86sCd4YMK</div>
-        <button type="button" class="copy-btn" onclick="copyWallet()">Copier</button>
-        <div id="copy-msg" class="copy-msg">Copié !</div>
+        <button type="button" class="copy-btn" onclick="copyWallet()">COPIER</button>
+        <div id="copy-msg" class="copy-msg">COPIÉ !</div>
       </div>
 
-      <p style="margin-top: 1rem;">Une fois le paiement validé, vous recevrez l'outil et les instructions dans les 24h.</p>
+      <p style="margin-top: 1.5rem;">Une fois le paiement validé, vous recevrez l'outil et les instructions dans les 24h.</p>
     </form>
   </section>
 
   <section id="faq">
-    <h2>FAQ - Questions fréquentes</h2>
+    <h2>FAQ - QUESTIONS FRÉQUENTES</h2>
 
     <div class="faq-item" tabindex="0">
       <div class="faq-question">
@@ -495,44 +454,44 @@
         <span>+</span>
       </div>
       <div class="faq-answer">
-        Après réception de votre achat, vous recevrez un lien avec un guide d'installation détaillé, simple et rapide.
+        Après réception de votre achat, un lien avec un guide d'installation clair et rapide vous sera envoyé.
       </div>
     </div>
 
     <div class="faq-item" tabindex="0">
       <div class="faq-question">
-        Est-ce que l'outil est sûr ?
+        L'outil est-il sûr ?
         <span>+</span>
       </div>
       <div class="faq-answer">
-        Oui, Call of Killeur intègre un système anti-ban avancé pour protéger votre compte.
+        Oui, Call of Killeur intègre un système anti-ban performant qui protège efficacement votre compte.
       </div>
     </div>
 
     <div class="faq-item" tabindex="0">
       <div class="faq-question">
-        Quel type de support est offert ?
+        Quel support proposez-vous ?
         <span>+</span>
       </div>
       <div class="faq-answer">
-        Un support client disponible 7j/7 par e-mail et Discord pour répondre à toutes vos questions.
+        Un support réactif 7j/7 par e-mail et Discord pour répondre à toutes vos questions.
       </div>
     </div>
 
     <div class="faq-item" tabindex="0">
       <div class="faq-question">
-        Sur quelles plateformes Call of Killeur fonctionne-t-il ?
+        Sur quelles plateformes fonctionne Call of Killeur ?
         <span>+</span>
       </div>
       <div class="faq-answer">
-        Notre outil est compatible uniquement avec la version PC de Call of Duty.
+        Call of Killeur est compatible uniquement avec la version PC de Call of Duty.
       </div>
     </div>
   </section>
 
   <section id="support">
-    <h2>Support Client</h2>
-    <p>Vous avez besoin d’aide ou d’informations supplémentaires ?</p>
+    <h2>SUPPORT CLIENT</h2>
+    <p>Besoin d’aide ou d’informations supplémentaires ?</p>
     <p>Contactez-nous par e-mail à <a href="mailto:support@callofkilleur.com">support@callofkilleur.com</a> ou via notre serveur <a href="https://discord.gg/example" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
     <p>Nous répondons généralement sous 24 heures.</p>
   </section>
@@ -542,7 +501,6 @@
   </footer>
 
   <script>
-    // Loader Hide après chargement complet
     window.addEventListener('load', () => {
       const loader = document.getElementById('loader');
       loader.style.opacity = '0';
@@ -551,14 +509,12 @@
       }, 600);
     });
 
-    // Payment section toggle
     function showPayment() {
       const payment = document.getElementById("payment-section");
       payment.style.display = "block";
       payment.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Copier adresse wallet
     function copyWallet() {
       const wallet = document.getElementById("wallet-address").textContent;
       navigator.clipboard.writeText(wallet).then(() => {
@@ -568,7 +524,6 @@
       });
     }
 
-    // FAQ Toggle
     document.querySelectorAll('.faq-item').forEach(item => {
       item.addEventListener('click', () => {
         item.classList.toggle('active');
@@ -581,6 +536,5 @@
       });
     });
   </script>
-
 </body>
 </html>
