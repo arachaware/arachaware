@@ -3,308 +3,97 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Call of Killeur - Puissance et Domination</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Oswald:wght@600&family=Roboto+Mono&display=swap" rel="stylesheet" />
+<title>Call of Killeur</title>
+<!-- Polices Orbitron et Oswald -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Oswald:wght@600&display=swap" rel="stylesheet" />
 <style>
-  /* Palette */
+  /* Couleurs */
   :root {
-    --black: #0b0b0b;
-    --dark-grey: #1e1e1e;
-    --medium-grey: #333;
-    --cod-blue: #1f4e79;
-    --olive: #4a5b34;
-    --light-grey: #bbb;
-    --text-white: #e6e6e6;
+    --vert-militaire: #4a5b34;
+    --vert-clair: #a5b37a;
+    --texte-clair: #d6e4c7;
+    --fond-fonce: #0b0b0b;
+    --fond-vert-fonce: #1f2a17;
   }
 
-  /* Reset */
+  /* Reset et base */
   * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Roboto Mono', monospace;
-    background-color: var(--black);
-    color: var(--text-white);
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  /* Navbar */
+  body {
+    font-family: 'Oswald', sans-serif;
+    background-color: var(--fond-fonce);
+    color: var(--texte-clair);
+  }
+
+  /* Navigation */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: linear-gradient(90deg, #0b0b0bcc, #222222cc);
-    border-bottom: 2px solid var(--cod-blue);
+    background-color: var(--vert-militaire);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
-    z-index: 200;
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
   }
+
   nav h1 {
-    font-size: 1.8rem;
-    color: var(--cod-blue);
-    text-shadow: 0 0 8px #1f4e79bb;
-    cursor: default;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: var(--texte-clair);
   }
+
   nav a {
-    color: var(--light-grey);
+    color: var(--texte-clair);
+    text-decoration: none;
     margin-left: 2rem;
     font-weight: 600;
-    text-decoration: none;
     transition: color 0.3s ease;
   }
+
   nav a:hover {
-    color: var(--cod-blue);
-    text-shadow: 0 0 12px #1f4e79aa;
+    color: var(--vert-clair);
   }
 
   /* Header */
   header {
-    position: relative;
-    height: 90vh;
-    background: url('https://wallpaperaccess.com/full/2726661.jpg') no-repeat center center/cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--fond-vert-fonce);
+    padding: 6rem 2rem 4rem;
     text-align: center;
-    padding: 0 2rem;
   }
-  header::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(13,13,13,0.85) 30%, rgba(13,13,13,0.95) 85%);
-    z-index: 0;
-  }
+
   header h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 4rem;
-    color: var(--cod-blue);
-    z-index: 1;
-    text-shadow: 0 0 14px #1f4e7988;
-    letter-spacing: 6px;
+    font-weight: 700;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    color: var(--vert-clair);
   }
+
   header p {
-    font-family: 'Roboto Mono', monospace;
     font-size: 1.3rem;
-    max-width: 600px;
-    color: var(--light-grey);
-    margin-bottom: 2.5rem;
-    z-index: 1;
-    text-shadow: 0 0 5px #000;
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    color: #c9d5a6;
   }
-  header button {
-    z-index: 1;
+
+  button {
+    background-color: var(--vert-militaire);
+    border: none;
+    border-radius: 30px;
     padding: 1rem 3rem;
     font-family: 'Oswald', sans-serif;
-    font-size: 1.3rem;
-    color: var(--black);
-    background: var(--cod-blue);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    font-weight: 700;
-    box-shadow: 0 0 20px #1f4e79cc;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-  header button:hover {
-    background: #163c5c;
-    transform: scale(1.05);
-    box-shadow: 0 0 40px #163c5ccc;
-  }
-
-  /* Section styles */
-  section {
-    max-width: 1100px;
-    margin: 5rem auto;
-    padding: 0 2rem;
-  }
-
-  section h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.8rem;
-    color: var(--cod-blue);
-    margin-bottom: 2rem;
-    letter-spacing: 3px;
-    text-shadow: 0 0 8px #1f4e79cc;
-    text-align: center;
-  }
-
-  /* Features */
-  .features {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .card {
-    background: var(--dark-grey);
-    border: 2px solid var(--cod-blue);
-    border-radius: 15px;
-    padding: 2rem;
-    width: 320px;
-    box-shadow: 0 0 15px #1f4e79aa;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: default;
-  }
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 30px #1f4e79dd;
-  }
-  .card h3 {
-    font-family: 'Oswald', sans-serif;
-    color: var(--cod-blue);
-    margin-bottom: 1rem;
-    text-shadow: 0 0 8px #1f4e79aa;
-  }
-  .card p {
-    font-size: 1rem;
-    color: var(--light-grey);
-    line-height: 1.4;
-  }
-
-  /* Payment Section */
-  #payment-section {
-    background: var(--dark-grey);
-    border: 2px solid var(--cod-blue);
-    border-radius: 15px;
-    padding: 2rem;
-    max-width: 500px;
-    margin: 3rem auto 0;
-    display: none;
-    box-shadow: 0 0 25px #1f4e79cc;
-  }
-  #payment-section h2 {
-    margin-bottom: 1rem;
-  }
-  form label {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--cod-blue);
-    letter-spacing: 1px;
-  }
-  form input[type="email"] {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 1.5rem;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    background: #222;
-    color: var(--text-white);
-    outline: none;
-    box-shadow: inset 0 0 8px #1f4e79aa;
-    transition: box-shadow 0.3s ease;
-  }
-  form input[type="email"]:focus {
-    box-shadow: 0 0 14px #1f4e79ee;
-  }
-  form p {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-    color: var(--light-grey);
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  /* Wallet container */
-  .wallet-container {
-    background: #1a1a1a;
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Roboto Mono', monospace;
-    color: var(--cod-blue);
-    box-shadow: inset 0 0 12px #1f4e79bb;
-    user-select: text;
-  }
-  .wallet {
-    word-break: break-word;
-    font-size: 1.1rem;
-  }
-  .copy-btn {
-    background: var(--cod-blue);
-    border: none;
-    padding: 0.5rem 1.2rem;
-    border-radius: 50px;
-    font-weight: 700;
-    cursor: pointer;
-    color: var(--black);
-    box-shadow: 0 0 15px #1f4e79cc;
-    transition: background 0.3s ease;
-  }
-  .copy-btn:hover {
-    background: #163c5c;
-    box-shadow: 0 0 30px #163c5ccc;
-  }
-  .copy-msg {
-    color: #6cfc6c;
-    font-weight: 700;
-    margin-left: 1rem;
-    opacity: 0;
-    user-select: none;
-    transition: opacity 0.4s ease;
-  }
-  .copy-msg.show {
-    opacity: 1;
-  }
-
-  /* FAQ Section */
-  #faq {
-    max-width: 850px;
-    margin: 0 auto 5rem;
-  }
-  .faq-item {
-    background: var(--dark-grey);
-    border: 2px solid var(--cod-blue);
-    border-radius: 15px;
-    padding: 1.5rem 2rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 20px #1f4e79aa;
-  }
-  .faq-item summary {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
     font-size: 1.2rem;
+    color: var(--texte-clair);
     cursor: pointer;
-    color: var(--cod-blue);
-    text-shadow: 0 0 8px #1f4e79bb;
-    user-select: none;
-    list-style: none;
-  }
-  .faq-item summary::-webkit-details-marker {
-    display: none;
-  }
-  .faq-item[open] summary {
-    color: #7aafde;
-    text-shadow: 0 0 14px #7aafdecc;
-  }
-  .faq-item p {
-    margin-top: 0.7rem;
-    color: var(--light-grey);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    line-height: 1.5;
+    transition: background-color 0.3s ease;
   }
 
-  /* Footer */
-  footer {
-    background: var(--dark-grey);
-    padding: 2rem 0;
-    text-align: center;
-    font-family: 'Roboto Mono', monospace;
-    color: var(--light-grey);
-    border-top: 2px solid var(--cod-blue);
-    letter-spacing: 1px;
+  button:hover {
+    background-color: #6e8448;
   }
 </style>
 </head>
@@ -313,7 +102,7 @@
     <h1>Call of Killeur</h1>
     <div>
       <a href="#features">Features</a>
-      <a href="#payment-section">Purchase</a>
+      <a href="#purchase">Acheter</a>
       <a href="#faq">FAQ</a>
     </div>
   </nav>
@@ -321,80 +110,10 @@
   <header>
     <h2>Puissance et Domination</h2>
     <p>Maîtrisez le champ de bataille avec l'équipement ultime. Soyez le killeur que personne n'ose défier.</p>
-    <button id="buy-btn">Acheter Maintenant</button>
+    <button>Acheter Maintenant</button>
   </header>
 
-  <section id="features">
-    <h2>Caractéristiques</h2>
-    <div class="features">
-      <div class="card">
-        <h3>Précision Militaire</h3>
-        <p>Équipement calibré pour des tirs précis au centimètre près, même sous pression intense.</p>
-      </div>
-      <div class="card">
-        <h3>Durabilité Extrême</h3>
-        <p>Matériaux résistants à toute épreuve, conçus pour durer dans les environnements les plus hostiles.</p>
-      </div>
-      <div class="card">
-        <h3>Ergonomie Avancée</h3>
-        <p>Design pensé pour un confort maximal et une réactivité instantanée.</p>
-      </div>
-    </div>
-  </section>
+  <!-- Tu pourras ajouter ici d'autres sections comme Features, FAQ, etc. -->
 
-  <section id="payment-section">
-    <h2>Finaliser votre achat</h2>
-    <form id="payment-form">
-      <label for="email">Email de confirmation :</label>
-      <input type="email" id="email" name="email" placeholder="votre.email@example.com" required />
-      <p>Envoyez votre paiement à l'adresse ci-dessous :</p>
-      <div class="wallet-container">
-        <span class="wallet" id="wallet-address">0xB3a2F45D8c72F9a7d9F1C5E4D87a8b21CdfE92b7</span>
-        <button type="button" class="copy-btn" id="copy-btn">Copier</button>
-        <span class="copy-msg" id="copy-msg">Copié !</span>
-      </div>
-    </form>
-  </section>
-
-  <section id="faq">
-    <h2>FAQ</h2>
-    <details class="faq-item">
-      <summary>Quels modes de paiement acceptez-vous ?</summary>
-      <p>Nous acceptons uniquement les paiements en cryptomonnaie via l'adresse indiquée.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Combien de temps faut-il pour recevoir le produit ?</summary>
-      <p>La livraison est instantanée après la confirmation du paiement.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Proposez-vous une garantie ?</summary>
-      <p>Oui, une garantie de 1 an couvre tous les défauts de fabrication.</p>
-    </details>
-  </section>
-
-  <footer>
-    &copy; 2025 Call of Killeur. Tous droits réservés.
-  </footer>
-
-  <script>
-    const copyBtn = document.getElementById('copy-btn');
-    const walletAddress = document.getElementById('wallet-address').textContent;
-    const copyMsg = document.getElementById('copy-msg');
-
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(walletAddress).then(() => {
-        copyMsg.classList.add('show');
-        setTimeout(() => copyMsg.classList.remove('show'), 1500);
-      }).catch(() => alert('Erreur lors de la copie'));
-    });
-
-    // Afficher section paiement quand on clique sur bouton acheter
-    const buyBtn = document.getElementById('buy-btn');
-    const paymentSection = document.getElementById('payment-section');
-    buyBtn.addEventListener('click', () => {
-      paymentSection.style.display = 'block';
-      paymentSection.scrollIntoView({behavior: 'smooth'});
-    });
-  </script>
 </body>
 </html>
