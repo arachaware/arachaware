@@ -3,118 +3,538 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Call of Killeur</title>
-<!-- Polices Orbitron et Oswald -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Oswald:wght@600&display=swap" rel="stylesheet" />
+<title>Call of Killeur - Puissance et Domination</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Oswald:wght@600&family=Roboto+Mono&display=swap" rel="stylesheet" />
 <style>
-  /* Couleurs */
+  /* Palette */
   :root {
-    --vert-militaire: #4a5b34;
-    --vert-clair: #a5b37a;
-    --texte-clair: #d6e4c7;
-    --fond-fonce: #0b0b0b;
-    --fond-vert-fonce: #1f2a17;
+    --black: #0b0b0b;
+    --dark-grey: #1e1e1e;
+    --medium-grey: #333;
+    --red: #d72828;
+    --olive: #4a5b34;
+    --light-grey: #bbb;
+    --text-white: #e6e6e6;
   }
 
-  /* Reset et base */
+  /* Reset */
   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
   }
-
   body {
-    font-family: 'Oswald', sans-serif;
-    background-color: var(--fond-fonce);
-    color: var(--texte-clair);
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--black);
+    color: var(--text-white);
+    overflow-x: hidden;
   }
 
-  /* Navigation */
+  /* Navbar */
   nav {
-    background-color: var(--vert-militaire);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: linear-gradient(90deg, #0b0b0bcc, #222222cc);
+    border-bottom: 2px solid var(--red);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
+    z-index: 200;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
-
   nav h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    letter-spacing: 4px;
-    color: var(--texte-clair);
+    font-size: 1.8rem;
+    color: var(--red);
+    text-shadow: 0 0 8px #d72828bb;
+    cursor: default;
   }
-
   nav a {
-    color: var(--texte-clair);
-    text-decoration: none;
+    color: var(--light-grey);
     margin-left: 2rem;
     font-weight: 600;
+    text-decoration: none;
     transition: color 0.3s ease;
   }
-
   nav a:hover {
-    color: var(--vert-clair);
+    color: var(--red);
+    text-shadow: 0 0 12px #d72828aa;
   }
 
   /* Header */
   header {
-    background-color: var(--fond-vert-fonce);
-    padding: 6rem 2rem 4rem;
+    position: relative;
+    height: 90vh;
+    background: url('https://wallpaperaccess.com/full/2726661.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13,13,13,0.85) 30%, rgba(13,13,13,0.95) 85%);
+    z-index: 0;
+  }
+  header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    color: var(--red);
+    z-index: 1;
+    text-shadow: 0 0 14px #d7282888;
+    letter-spacing: 6px;
+    margin-bottom: 1rem;
+  }
+  header p {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.3rem;
+    max-width: 600px;
+    color: var(--light-grey);
+    margin-bottom: 2.5rem;
+    z-index: 1;
+    text-shadow: 0 0 5px #000;
+  }
+  header button {
+    z-index: 1;
+    padding: 1rem 3rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    color: var(--black);
+    background: var(--red);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-weight: 700;
+    box-shadow: 0 0 20px #d72828cc;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  header button:hover {
+    background: #a71b1b;
+    transform: scale(1.05);
+    box-shadow: 0 0 40px #a71b1bcc;
+  }
+
+  /* Section styles */
+  section {
+    max-width: 1100px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+  }
+
+  section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    color: var(--red);
+    margin-bottom: 2rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 8px #d72828cc;
     text-align: center;
   }
 
-  header h2 {
+  /* Features */
+  .features {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .card {
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 320px;
+    box-shadow: 0 0 15px #d72828aa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #d72828dd;
+  }
+  .card h3 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--red);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #d72828aa;
+  }
+  .card p {
+    font-size: 1rem;
+    color: var(--light-grey);
+    line-height: 1.4;
+  }
+
+  /* Payment Section */
+  #payment-section {
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 3rem auto 0;
+    display: none;
+    box-shadow: 0 0 25px #d72828cc;
+  }
+  #payment-section h2 {
+    margin-bottom: 1rem;
+  }
+  form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--red);
+    letter-spacing: 1px;
+  }
+  form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    background: #222;
+    color: var(--text-white);
+    outline: none;
+    box-shadow: inset 0 0 8px #d72828aa;
+    transition: box-shadow 0.3s ease;
+  }
+  form input[type="email"]:focus {
+    box-shadow: 0 0 14px #d72828ee;
+  }
+  form p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--light-grey);
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  /* Wallet container */
+  .wallet-container {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    box-shadow: inset 0 0 12px #d72828bb;
+    user-select: text;
+  }
+  .wallet {
+    word-break: break-word;
+    font-size: 1.1rem;
+  }
+  .copy-btn {
+    background: var(--red);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--black);
+    box-shadow: 0 0 15px #d72828cc;
+    transition: background 0.3s ease;
+  }
+  .copy-btn:hover {
+    background: #a71b1b;
+    box-shadow: 0 0 30px #a71b1bcc;
+  }
+  .copy-msg {
+    color: #6cfc6c;
+    font-weight: 700;
+    margin-left: 1rem;
+    opacity: 0;
+    user-select: none;
+    transition: opacity 0.4s ease;
+  }
+  .copy-msg.show {
+    opacity: 1;
+  }
+
+  /* FAQ Section */
+  #faq {
+    max-width: 850px;
+    margin: 0 auto 5rem;
+  }
+  .faq-item {
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 1.3rem 1.8rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #d72828aa;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .faq-item:hover {
+    background: #2e2e2e;
+    box-shadow: 0 0 20px #d72828dd;
+  }
+  .faq-question {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--red);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 2px;
+  }
+  .faq-answer {
+    margin-top: 0.6rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--light-grey);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    line-height: 1.4;
+  }
+  .faq-item.active .faq-answer {
+    max-height: 300px;
+  }
+
+  /* Support Section */
+  #support {
+    max-width: 600px;
+    margin: 0 auto 5rem;
+    background: var(--dark-grey);
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 25px #d72828cc;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--light-grey);
+    text-align: center;
+  }
+  #support h2 {
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 2rem;
+    color: var(--red);
     margin-bottom: 1rem;
-    color: var(--vert-clair);
+  }
+  #support a {
+    color: var(--red);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  #support a:hover {
+    color: #a71b1b;
+    text-decoration: underline;
   }
 
-  header p {
-    font-size: 1.3rem;
-    max-width: 650px;
-    margin: 0 auto 2.5rem;
-    color: #c9d5a6;
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: #555;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    border-top: 1px solid #222;
   }
 
-  button {
-    background-color: var(--vert-militaire);
-    border: none;
-    border-radius: 30px;
-    padding: 1rem 3rem;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2rem;
-    color: var(--texte-clair);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  /* Loader Overlay */
+  #loader {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    flex-direction: column;
+    color: var(--red);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    user-select: none;
+  }
+  .spinner {
+    border: 6px solid rgba(215, 40, 40, 0.2);
+    border-top: 6px solid var(--red);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1.2s linear infinite;
+    margin-bottom: 1rem;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
-  button:hover {
-    background-color: #6e8448;
+  /* Responsive */
+  @media (max-width: 850px) {
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+    #payment-section {
+      margin: 3rem 1rem 0;
+      width: auto;
+    }
   }
 </style>
 </head>
 <body>
+
+  <div id="loader">
+    <div class="spinner"></div>
+    Chargement...
+  </div>
+
   <nav>
-    <h1>Call of Killeur</h1>
+    <h1>CALL OF KILLEUR</h1>
     <div>
-      <a href="#features">Features</a>
-      <a href="#purchase">Acheter</a>
+      <a href="#features">FONCTIONNALITÉS</a>
+      <a href="#" onclick="showPayment()">ACHETER</a>
       <a href="#faq">FAQ</a>
+      <a href="#support">SUPPORT</a>
     </div>
   </nav>
 
   <header>
-    <h2>Puissance et Domination</h2>
-    <p>Maîtrisez le champ de bataille avec l'équipement ultime. Soyez le killeur que personne n'ose défier.</p>
-    <button>Acheter Maintenant</button>
+    <h2>CALL OF KILLEUR</h2>
+    <p>Dominez le champ de bataille avec nos outils de performance extrême.</p>
+    <button onclick="showPayment()">ACHETER MAINTENANT</button>
   </header>
 
-  <!-- Tu pourras ajouter ici d'autres sections comme Features, FAQ, etc. -->
+  <section id="features">
+    <h2>FONCTIONNALITÉS</h2>
+    <div class="features">
+      <div class="card">
+        <h3>AIMBOT</h3>
+        <p>Visez automatiquement vos cibles avec une précision chirurgicale, même en pleine action.</p>
+      </div>
+      <div class="card">
+        <h3>WALLHACK</h3>
+        <p>Repérez vos ennemis à travers les murs et obstacles pour anticiper chaque mouvement.</p>
+      </div>
+      <div class="card">
+        <h3>ANTI-BAN</h3>
+        <p>Notre technologie furtive garantit une protection avancée contre tout système de détection.</p>
+      </div>
+    </div>
+  </section>
 
+  <section id="payment-section">
+    <h2>ACHETER CALL OF KILLEUR</h2>
+    <form>
+      <label for="email">Adresse e-mail :</label>
+      <input type="email" id="email" placeholder="votre.email@example.com" required />
+
+      <p>Envoyez <strong>79 USD en SOL</strong> à l'adresse suivante :</p>
+
+      <div class="wallet-container">
+        <div class="wallet" id="wallet-address">SyttRuok9zQr4Kp93f58D8zHuerckFYrUy86sCd4YMK</div>
+        <button type="button" class="copy-btn" onclick="copyWallet()">COPIER</button>
+        <div id="copy-msg" class="copy-msg">COPIÉ !</div>
+      </div>
+
+      <p style="margin-top: 1.5rem;">Une fois le paiement validé, vous recevrez l'outil et les instructions dans les 24h.</p>
+    </form>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ - QUESTIONS FRÉQUENTES</h2>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Comment installer Call of Killeur ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Après réception de votre achat, un lien avec un guide d'installation clair et rapide vous sera envoyé.
+      </div>
+    </div>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        L'outil est-il sûr ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Oui, Call of Killeur intègre un système anti-ban performant qui protège efficacement votre compte.
+      </div>
+    </div>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Quel support proposez-vous ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Un support réactif 7j/7 par e-mail et Discord pour répondre à toutes vos questions.
+      </div>
+    </div>
+
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">
+        Sur quelles plateformes fonctionne Call of Killeur ?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Call of Killeur est compatible uniquement avec la version PC de Call of Duty.
+      </div>
+    </div>
+  </section>
+
+  <section id="support">
+    <h2>SUPPORT CLIENT</h2>
+    <p>Besoin d’aide ou d’informations supplémentaires ?</p>
+    <p>Contactez-nous par e-mail à <a href="mailto:support@callofkilleur.com">support@callofkilleur.com</a> ou via notre serveur <a href="https://discord.gg/example" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+    <p>Nous répondons généralement sous 24 heures.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Call of Killeur. Tous droits réservés.
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 600);
+    });
+
+    function showPayment() {
+      const payment = document.getElementById("payment-section");
+      payment.style.display = "block";
+      payment.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyWallet() {
+      const wallet = document.getElementById("wallet-address").textContent;
+      navigator.clipboard.writeText(wallet).then(() => {
+        const msg = document.getElementById("copy-msg");
+        msg.classList.add("show");
+        setTimeout(() => msg.classList.remove("show"), 1500);
+      });
+    }
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.classList.toggle('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
