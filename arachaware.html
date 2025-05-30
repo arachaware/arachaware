@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>arachaware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ff1744;
+      --dark: #0d0d0d;
+      --glass: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--dark);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      background: rgba(13, 13, 13, 0.6);
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    nav h1 {
+      color: var(--red);
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    header {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      background: radial-gradient(circle at top left, rgba(255, 23, 68, 0.1), transparent);
+    }
+
+    header h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #bbb;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--red);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(255, 23, 68, 0.4);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #c51162;
+      transform: translateY(-3px);
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .card {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 300px;
+      backdrop-filter: blur(15px);
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 10px rgba(255, 23, 68, 0.05);
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(255, 23, 68, 0.2);
+    }
+
+    .card h3 {
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    #payment-section {
+      display: none;
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    form {
+      background: var(--glass);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      margin: auto;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255, 23, 68, 0.1);
+      text-align: left;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input {
+      padding: 1rem;
+      width: 100%;
+      margin: 0.5rem 0 1.5rem 0;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    .wallet-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #111;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: monospace;
+      color: var(--red);
+      user-select: text;
+    }
+
+    .wallet {
+      flex: 1;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background: var(--red);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      box-shadow: 0 0 10px rgba(255,23,68,0.6);
+    }
+
+    .copy-btn:hover {
+      background: #c51162;
+    }
+
+    .copy-msg {
+      margin-left: 1rem;
+      color: limegreen;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      user-select: none;
+    }
+
+    .copy-msg.show {
+      opacity: 1;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      .wallet-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .copy-btn {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .copy-msg {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>arachaware</h1>
+    <div>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#" onclick="showPayment()">Acheter</a>
+    </div>
+  </nav>
+
+  <header>
+    <h2>le premier ransomware simple d'utilisation</h2>
+    <p>recever 95% des rançon envoyer grace a votre diffusion du virus</p>
+    <button class="btn" onclick="showPayment()">Acheter maintenant</button>
+  </header>
+
+  <section id="features">
+    <h2>Fonctionnalités</h2>
+    <div class="features">
+      <div class="card">
+        <h3>bloquage complet du pc infecter</h3>
+        <p>le pc infecter sera inutilisable jusqu'au payement integral de la rançcon</p>
+      </div>
+      <div class="card">
+        <h3>panel de configuration simple</h3>
+        <p>configuer votre ransomeware en - de 10minutes et sans conaisance</p>
+      </div>
+      <div class="card">
+        <h3>rentable des la premiere utilisation</h3>
+        <p>pour chaque rançon vous recevrais 250usd en la crypto de votre choix </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="payment-section">
+    <h2>Acheter SmartSuite</h2>
+    <form>
+      <label for="email">Votre adresse e-mail :</label>
+      <input id="email" type="email" placeholder="email@example.com" required>
+
+      <p>Envoyez <strong>79 usd en SOL</strong> à l’adresse suivante :</p>
+
+      <div class="wallet-container">
+        <div class="wallet" id="wallet-address">SyttRuok9zQr4Kp93f58D8zHuerckFYrUy86sCd4YMK</div>
+        <button type="button" class="copy-btn" onclick="copyWallet()">Copier</button>
+        <div id="copy-msg" class="copy-msg">Copié !</div>
+      </div>
+
+      <p style="margin-top: 1rem;">Après réception, vous recevrez le logiciel et la webapp de configuration dans un delais de 24h par e-mail.</p>
+    </form>
+  </section>
+
+  <script>
+    function showPayment() {
+      const payment = document.getElementById("payment-section");
+      payment.style.display = "block";
+      payment.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyWallet() {
+      const wallet = document.getElementById("wallet-address").textContent;
+      navigator.clipboard.writeText(wallet).then(() => {
+        const msg = document.getElementById("copy-msg");
+        msg.classList.add("show");
+        setTimeout(() => msg.classList.remove("show"), 1500);
+      });
+    }
+  </script>
+
+</body>
+</html>
